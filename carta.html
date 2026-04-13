@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Carta para la Seño Gabriela | Jonathan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', 'Quicksand', 'Poppins', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-decor {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-decor .corazon {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.1;
+            animation: flotar 20s infinite linear;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+            width: 100%;
+            animation: aparecer 0.8s ease-out;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carta-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .carta {
+            background: #fffef7;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sello {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff6b6b, #c0392b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transform: rotate(15deg);
+        }
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ffd89b;
+            padding-bottom: 20px;
+        }
+
+        .encabezado h1 {
+            font-size: 2rem;
+            color: #c0392b;
+            font-family: 'Georgia', serif;
+            margin-bottom: 10px;
+        }
+
+        .encabezado .fecha {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .contenido {
+            font-family: 'Georgia', serif;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        .saludo {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .mensaje {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .mensaje p {
+            margin-bottom: 15px;
+        }
+
+        .lista-razones {
+            background: linear-gradient(135deg, #fff5e6, #ffe8d6);
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #ffb347;
+        }
+
+        .lista-razones h3 {
+            color: #e67e22;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lista-razones ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lista-razones li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .lista-razones li::before {
+            content: "🌻";
+            position: absolute;
+            left: 0;
+        }
+
+        .poema {
+            background: #fdf6e3;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+            font-style: italic;
+            border: 1px dashed #ffb347;
+        }
+
+        .poema p {
+            margin: 8px 0;
+            color: #8B4513;
+        }
+
+        .despedida {
+            margin-top: 30px;
+            text-align: right;
+            border-top: 2px solid #ffd89b;
+            padding-top: 20px;
+        }
+
+        .firma {
+            font-size: 1.3rem;
+            color: #c0392b;
+            font-family: 'Dancing Script', cursive;
+            margin-top: 10px;
+        }
+
+        .botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-flor {
+            background: linear-gradient(135deg, #ffb347, #ff8c00);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+
+        .btn-flor:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-volver {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-volver:hover {
+            transform: translateY(-2px);
+        }
+
+        .music-note {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: white;
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-note:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .flor-deco {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1;
+            animation: flotarFlor 4s infinite ease;
+        }
+
+        @keyframes flotarFlor {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        .confeti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            position: absolute;
+            animation: caer 3s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carta { padding: 25px; }
+            .encabezado h1 { font-size: 1.3rem; }
+            .mensaje p, .lista-razones li { font-size: 0.9rem; }
+            .sello { width: 45px; height: 45px; font-size: 22px; }
+            .botones .btn { padding: 10px 20px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decor" id="bgDecor"></div>
+    
+    <div class="container">
+        <div class="carta-wrapper">
+            <div class="carta">
+                <div class="sello">💌</div>
+                
+                <div class="encabezado">
+                    <h1>🌻 Para la Mejor Persona del Mundo 🌻</h1>
+                    <div class="fecha" id="fechaActual"></div>
+                </div>
+                
+                <div class="contenido">
+                    <div class="saludo">
+                        Querida Seño Gabriela,
+                    </div>
+                    
+                    <div class="mensaje">
+                        <p>Quería Seño Gabriela, aquí vengo para felicitarla en un día tan especial como lo es su cumpleaños. Vengo aquí felizmente a desearle que cumpla muchos años más, que espero que se encuentre bien y que para mí es una persona que siempre quiero.</p>
+                        
+                        <p>A pesar de las circunstancias que pasaron, yo la sigo queriendo mucho. Y es por eso que hoy vine a demostrarle mi cariño de la forma que más amo en mi vida: programando. Entonces le hice este pequeño programa para felicitarla y demostrarle todo el cariño que le tengo.</p>
+                        
+                        <p>Aunque no nos miremos, usted sabe que siempre la tengo en mi corazón.</p>
+                    </div>
+                    
+                 
+                    
+                    <div class="poema">
+                        <p>✿✿✿</p>
+                       <p>Hoy florece el día con más alegría,</p>
+                         <p>porque celebramos su vida, su guía.</p>
+                         <p>Entre risas y enseñanza sincera,</p>
+                        <p>brilla su luz, querida Seño Gabriela.</p>
+                        <br>
+                        <p>Como un girasol que siempre al sol mira,</p>
+                        <p>así su cariño a todos nos inspira.</p>
+                        <p>Con paciencia y amor nos sabe enseñar,</p>
+                        <p>dejando huellas que no se van a borrar.</p>
+                        <br>
+                         <p>Hoy te regalo este detalle,</p>
+                         <p>hecho con código y con fe,</p>
+                        <p>porque así soy yo, Jonathan,</p>
+                         <p>y siempre te querré, mujer. 💛</p>
+                        <p>✿✿✿</p>
+                    </div>
+                    
+                    <div class="mensaje">
+                        <p>En este nuevo año de vida, le deseo toda la felicidad del mundo, salud, amor y que siga siendo esa luz que ilumina a quienes la rodean. Que cada uno de sus días esté lleno de momentos especiales, como los que usted regala sin darse cuenta.</p>
+                        
+                        <p>Gracias por ser tan especial, Seño Gabriela. Aunque nunca fui su alumno oficialmente, aprendí mucho de usted. Y aunque Fatima ya no forme parte de mi vida , eso no cambia el cariño sincero que le tengo ya que la aprendi a quere como a una madre. Entonces para despedirme solo le quiero decir que usted es verdaderamente única por se la madre y el padre que Fatima necesita.</p>
+                    </div>
+                    
+                    <div class="despedida">
+                        <p>Con todo mi cariño y admiración,</p>
+                        <div class="firma">🌻 Jonathan 🌻</div>
+                        <p style="font-size: 0.8rem; margin-top: 5px;">Su gran amigo, por siempre.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+    <script>
+        // Fecha actual
+        const hoy = new Date();
+        const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('fechaActual').textContent = `📅 ${hoy.toLocaleDateString('es-ES', opciones)}`;
+        
+        // Corazones flotantes
+        function crearCorazones() {
+            const bg = document.getElementById('bgDecor');
+            const items = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🌻', '🌸', '🌼'];
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                el.className = 'corazon';
+                el.textContent = items[Math.floor(Math.random() * items.length)];
+                el.style.left = `${Math.random() * 100}%`;
+                el.style.fontSize = `${15 + Math.random() * 35}px`;
+                el.style.animationDuration = `${10 + Math.random() * 20}s`;
+                el.style.animationDelay = `${Math.random() * 10}s`;
+                bg.appendChild(el);
+            }
+        }
+        crearCorazones();
+        
+        // Flores decorativas
+        function crearFlores() {
+            const flores = ['🌻', '🌸', '🌼', '🌷', '🌺', '🌹'];
+            for (let i = 0; i < 15; i++) {
+                const flor = document.createElement('div');
+                flor.className = 'flor-deco';
+                flor.textContent = flores[Math.floor(Math.random() * flores.length)];
+                flor.style.left = `${Math.random() * 100}%`;
+                flor.style.top = `${Math.random() * 100}%`;
+                flor.style.fontSize = `${25 + Math.random() * 30}px`;
+                flor.style.animationDelay = `${Math.random() * 5}s`;
+                flor.style.opacity = '0.6';
+                document.body.appendChild(flor);
+            }
+        }
+        crearFlores();
+        
+        // Confeti/globos
+        function crearGlobos() {
+            const colores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9', '#ff7675', '#74b9ff'];
+            for (let i = 0; i < 100; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confeti';
+                conf.style.left = `${Math.random() * 100}%`;
+                conf.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+                conf.style.width = `${5 + Math.random() * 12}px`;
+                conf.style.height = `${5 + Math.random() * 12}px`;
+                conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+                conf.style.animationDuration = `${1 + Math.random() * 3}s`;
+                conf.style.animationDelay = `${Math.random() * 0.5}s`;
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 3000);
+            }
+            
+            const msg = document.createElement('div');
+            msg.textContent = '🎉 ¡FELIZ CUMPLEAÑOS SEÑORA GABRIELA! 🎉';
+            msg.style.position = 'fixed';
+            msg.style.top = '50%';
+            msg.style.left = '50%';
+            msg.style.transform = 'translate(-50%, -50%)';
+            msg.style.backgroundColor = 'rgba(255,255,255,0.95)';
+            msg.style.padding = '20px 40px';
+            msg.style.borderRadius = '50px';
+            msg.style.fontSize = '1.3rem';
+            msg.style.fontWeight = 'bold';
+            msg.style.color = '#c0392b';
+            msg.style.zIndex = '1001';
+            msg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            msg.style.animation = 'aparecer 0.5s ease';
+            msg.style.textAlign = 'center';
+            msg.style.fontFamily = 'Georgia, serif';
+            document.body.appendChild(msg);
+            setTimeout(() => {
+                msg.style.animation = 'aparecer 0.5s ease reverse';
+                setTimeout(() => msg.remove(), 500);
+            }, 3000);
+        }
+        
+        document.getElementById('btnGlobos').addEventListener('click', crearGlobos);
+        document.getElementById('btnVolver').addEventListener('click', () => {
+            
+            window.location.reload();
+        });
+        document.getElementById('musicNote').addEventListener('click', () => {
+            alert('🎵 ¡Feliz cumpleaños Señora Gabriela! 🎵\n\nQue la música de la felicidad nunca deje de sonar en su vida.');
+        });
+        
+        // Animaciones de entrada
+        const mensajes = document.querySelectorAll('.mensaje p');
+        mensajes.forEach((p, i) => {
+            p.style.opacity = '0';
+            p.style.transform = 'translateY(10px)';
+            p.style.transition = 'all 0.5s ease';
+            setTimeout(() => {
+                p.style.opacity = '1';
+                p.style.transform = 'translateY(0)';
+            }, 100 + (i * 200));
+        });
+        
+        const lista = document.querySelector('.lista-razones');
+        lista.style.opacity = '0';
+        lista.style.transform = 'translateX(-20px)';
+        setTimeout(() => {
+            lista.style.transition = 'all 0.6s ease';
+            lista.style.opacity = '1';
+            lista.style.transform = 'translateX(0)';
+        }, 400);
+        
+        const poema = document.querySelector('.poema');
+        poema.style.opacity = '0';
+        setTimeout(() => {
+            poema.style.transition = 'all 0.6s ease';
+            poema.style.opacity = '1';
+        }, 600);
+    </script>
+</body>
+</html>

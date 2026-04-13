@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Feliz Cumpleaños Señora Gabriela | Jonathan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Quicksand', 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Contenedor principal - cielo hermoso */
+        #cont {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #87CEEB 0%, #b8e1fc 40%, #e0f0ff 100%);
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(255,245,200,0.4);
+        }
+
+        /* Nubes flotantes */
+        .nube {
+            position: absolute;
+            background: rgba(255,255,245,0.85);
+            border-radius: 80% 20% 75% 25% / 60% 50% 50% 40%;
+            filter: blur(8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            z-index: 1;
+            animation: flotarNube 20s infinite ease-in-out;
+        }
+        @keyframes flotarNube {
+            0% { transform: translateX(-5%) translateY(0px); }
+            50% { transform: translateX(5%) translateY(-8px); }
+            100% { transform: translateX(-5%) translateY(0px); }
+        }
+
+        /* Pradera mejorada */
+        #pradera {
+            position: absolute;
+            width: 100%;
+            height: 28%;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(180deg, #7cb518 0%, #5a8f2c 100%);
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -8px 15px rgba(0,0,0,0.1);
+            z-index: 3;
+        }
+
+        /* Pasto con textura */
+        #pradera::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(90deg, 
+                rgba(90, 143, 44, 0.3) 0px, 
+                rgba(90, 143, 44, 0.3) 2px,
+                transparent 2px,
+                transparent 15px);
+            pointer-events: none;
+        }
+
+        /* Flores pequeñas en la pradera */
+        .flower-grass {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ffec80, #ffcc44);
+            border-radius: 60% 40% 50% 50%;
+            z-index: 4;
+            animation: mecerFlor 3s infinite ease;
+        }
+        @keyframes mecerFlor {
+            0%,100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* TALLO del girasol */
+        #tallo {
+            position: absolute;
+            width: 18px;
+            height: 38%;
+            bottom: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #2d6a2b, #3e8a3a, #2d6a2b);
+            border-radius: 20px;
+            z-index: 5;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Hojas del tallo */
+        .hoja {
+            position: absolute;
+            width: 45px;
+            height: 28px;
+            background: linear-gradient(145deg, #4caf50, #2e7d32);
+            border-radius: 80% 0 70% 20%;
+            left: -35px;
+            top: 40%;
+            transform: rotate(-35deg);
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+            z-index: 4;
+        }
+        .hoja2 {
+            left: auto;
+            right: -35px;
+            top: 60%;
+            transform: rotate(145deg);
+        }
+
+        /* Contenedor del girasol (para centrado perfecto) */
+        .girasol-container {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            z-index: 8;
+        }
+
+        /* PÉTALOS del girasol */
+        .petal-girasol {
+            position: absolute;
+            width: 55px;
+            height: 95px;
+            background: linear-gradient(145deg, #ffda7c, #ffb845);
+            border-radius: 50% 50% 45% 45%;
+            left: 50%;
+            top: 50%;
+            transform-origin: 50% 85%;
+            margin-left: -27px;
+            margin-top: -50px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 70%, 50% 100%, 0% 70%);
+            transition: all 0.2s;
+        }
+
+        /* CENTRO del girasol (botón más pequeño) */
+      #centro {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f5b642, #c97e00);
+    box-shadow: 0 0 0 8px #ffe6a3, 0 15px 30px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    animation: latidoSuave 2s infinite ease;
+
+    /* 👇 CLAVE PARA CENTRAR */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        @keyframes latidoSuave {
+            0%,100% { transform: scale(1); box-shadow: 0 0 0 8px #ffe6a3, 0 15px 30px rgba(0,0,0,0.3);}
+            50% { transform: scale(1.02); box-shadow: 0 0 0 12px #fff0b5, 0 18px 35px rgba(0,0,0,0.35);}
+        }
+
+        #centro:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 0 12px #ffefb0, 0 20px 35px rgba(0,0,0,0.4);
+        }
+
+        /* Botón interno */
+        #btncentro {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    font-family: inherit;
+}
+        #btncentro h1 {
+            font-size: 1.3rem;
+            color: #2c2418;
+            text-shadow: 0 2px 5px #ffecb3;
+            background: rgba(255, 250, 210, 0.8);
+            padding: 6px 12px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        #btncentro span {
+            font-size: 1.5rem;
+        }
+
+        /* Mensaje flotante */
+        .mensaje-flor {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+           
+            transform: translateX(-50%);
+            background: rgba(255, 252, 225, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 10px 22px;
+            border-radius: 80px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #5a3e1f;
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 1px solid #ffdd99;
+            z-index: 12;
+            font-family: 'Quicksand', sans-serif;
+            pointer-events: none;
+            animation: flotarMensaje 2s infinite alternate;
+        }
+
+        @keyframes flotarMensaje {
+            0% { transform: translateX(-50%) translateY(0px); }
+            100% { transform: translateX(-50%) translateY(-6px); }
+        }
+
+        /* Flores silvestres en el cielo */
+        .wildflower-sky {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            animation: flotarFlor 6s infinite ease;
+        }
+        @keyframes flotarFlor {
+            0%,100% { transform: translateY(0px) rotate(0deg);}
+            50% { transform: translateY(-12px) rotate(5deg);}
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .girasol-container {
+                top: 40%;
+            }
+            #centro {
+                width: 110px;
+                height: 110px;
+            }
+            .petal-girasol {
+                width: 45px;
+                height: 80px;
+                margin-left: -22px;
+                margin-top: -38px;
+            }
+            #btncentro h1 {
+                font-size: 1rem;
+                padding: 4px 10px;
+            }
+            #btncentro span {
+                font-size: 1.2rem;
+            }
+            .mensaje-flor {
+                font-size: 0.8rem;
+                white-space: nowrap;
+                bottom: 28%;
+                padding: 8px 18px;
+            }
+            #tallo {
+                width: 14px;
+                height: 36%;
+                bottom: 26%;
+            }
+            .hoja {
+                width: 35px;
+                height: 22px;
+                left: -28px;
+            }
+            .hoja2 {
+                right: -28px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .girasol-container {
+                top: 38%;
+            }
+            #centro {
+                width: 90px;
+                height: 90px;
+                 margin-top: 55%;
+            }
+            .petal-girasol {
+                width: 38px;
+                height: 68px;
+                margin-left: -19px;
+                margin-top: -36px;
+            }
+            #btncentro h1 {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+            }
+            #btncentro span {
+                font-size: 1rem;
+            }
+            .mensaje-flor {
+                font-size: 0.7rem;
+                white-space: nowrap;
+                bottom: 25%;
+                padding: 6px 14px;
+            }
+            #tallo {
+                width: 12px;
+                height: 34%;
+                bottom: 24%;
+            }
+            .hoja {
+                width: 28px;
+                height: 18px;
+                left: -22px;
+                top: 35%;
+            }
+            .hoja2 {
+                right: -22px;
+                top: 55%;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .girasol-container {
+                top: 36%;
+            }
+            #centro {
+                width: 85px;
+                height: 85px;
+            }
+            .petal-girasol {
+                width: 30px;
+                height: 58px;
+                margin-left: -15px;
+                margin-top: -15px;
+            }
+            #btncentro h1 {
+                font-size: 0.7rem;
+                padding: 2px 6px;
+            }
+            .mensaje-flor {
+                font-size: 0.6rem;
+                white-space: nowrap;
+                bottom: 22%;
+                padding: 5px 12px;
+            }
+        }
+
+        /* Efecto de brillo */
+        .brillo {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,200,0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 15;
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <!-- Nubes decorativas -->
+        <div class="nube" style="width: 180px; height: 90px; top: 8%; left: 5%;"></div>
+        <div class="nube" style="width: 250px; height: 110px; top: 15%; right: 8%; animation-delay: -3s;"></div>
+        <div class="nube" style="width: 140px; height: 70px; top: 25%; left: 20%; animation-duration: 25s;"></div>
+
+        <!-- Pradera -->
+        <div id="pradera"></div>
+
+        <!-- TALLO con hojas -->
+        <div id="tallo">
+            <div class="hoja"></div>
+            <div class="hoja hoja2"></div>
+        </div>
+
+        <!-- Contenedor del girasol (para centrado perfecto) -->
+        <div class="girasol-container">
+            <!-- PÉTALOS -->
+            <div id="petalosContainer"></div>
+            <!-- CENTRO (BOTÓN) -->
+            <div id="centro">
+                <button id="btncentro">
+                    <h1>🌻 ENTRAR 🌻</h1>
+                   
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensaje especial -->
+        <div class="mensaje-flor">
+           <center><h2>💛 Para la cumpleañera que tanto quiero 💛</h2> 
+           <h1>Seño Gabriela</h1></center>
+        </div>
+
+        <div class="brillo"></div>
+    </div>
+
+    <script>
+        // ========== 1. CREAR PÉTALOS DEL GIRASOL ==========
+        const petalosContainer = document.getElementById('petalosContainer');
+        const numPetals = 18;
+
+        for (let i = 0; i < numPetals; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal-girasol');
+            const angle = (i * 360 / numPetals);
+            petal.style.transform = `rotate(${angle}deg) translateY(-52px)`;
+            petal.style.transformOrigin = '50% 85%';
+            if (i % 3 === 0) petal.style.background = 'linear-gradient(145deg, #ffed9e, #ffaa33)';
+            if (i % 5 === 0) petal.style.background = 'linear-gradient(145deg, #ffc97a, #ffa02e)';
+            petalosContainer.appendChild(petal);
+        }
+
+        // ========== 2. CREAR FLORES SILVESTRES EN EL CIELO ==========
+        function crearFloresSilvestres() {
+            const flores = ['🌼', '🌸', '🌷', '🌻', '🌺', '🌸', '🌼', '🌿', '🦋'];
+            for (let i = 0; i < 24; i++) {
+                const flor = document.createElement('div');
+                flor.className = 'wildflower-sky';
+                flor.textContent = flores[Math.floor(Math.random() * flores.length)];
+                flor.style.position = 'absolute';
+                flor.style.fontSize = `${18 + Math.random() * 22}px`;
+                flor.style.left = `${Math.random() * 95}%`;
+                flor.style.top = `${Math.random() * 70}%`;
+                flor.style.opacity = 0.6 + Math.random() * 0.4;
+                flor.style.animationDuration = `${5 + Math.random() * 8}s`;
+                flor.style.animationDelay = `${Math.random() * 5}s`;
+                document.getElementById('cont').appendChild(flor);
+            }
+        }
+        crearFloresSilvestres();
+
+        // ========== 3. FLORES EN LA PRADERA ==========
+        function agregarFloresPradera() {
+            const pradera = document.getElementById('pradera');
+            for (let i = 0; i < 14; i++) {
+                const florecita = document.createElement('div');
+                florecita.className = 'flower-grass';
+                florecita.style.left = `${Math.random() * 96}%`;
+                florecita.style.bottom = `${Math.random() * 80}%`;
+                florecita.style.width = `${18 + Math.random() * 18}px`;
+                florecita.style.height = `${18 + Math.random() * 18}px`;
+                florecita.style.background = `radial-gradient(circle, #ffe087, #ffb347)`;
+                florecita.style.animationDelay = `${Math.random() * 3}s`;
+                pradera.appendChild(florecita);
+            }
+        }
+        agregarFloresPradera();
+
+        // ========== 4. EVENTO DEL BOTÓN ==========
+        const btnCentro = document.getElementById('btncentro');
+        const centroDiv = document.getElementById('centro');
+        
+        btnCentro.addEventListener('click', () => {
+            centroDiv.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                centroDiv.style.transform = 'scale(1)';
+            }, 150);
+            
+            window.location.href = 'carta.html';
+
+        });
+
+        // Animación de pétalos
+        const petalos = document.querySelectorAll('.petal-girasol');
+        petalos.forEach(petal => {
+            petal.addEventListener('mouseenter', (e) => {
+                e.target.style.filter = 'brightness(1.08)';
+            });
+            petal.addEventListener('mouseleave', (e) => {
+                e.target.style.filter = 'brightness(1)';
+            });
+        });
+
+        
+    </script>
+</body>
+</html>
